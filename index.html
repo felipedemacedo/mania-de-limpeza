@@ -49,18 +49,35 @@
   :focus-visible{outline:3px solid var(--blue-light);outline-offset:2px;border-radius:4px;}
 
   .sheet{max-width:900px;margin:0 auto;background:var(--sheet-bg);border-radius:26px;overflow:hidden;position:relative;
-    box-shadow:0 40px 90px -34px rgba(11,42,84,.5),0 4px 14px rgba(11,42,84,.08);}
+    box-shadow:0 40px 90px -34px rgba(11,42,84,.5),0 4px 14px rgba(11,42,84,.08);z-index:1;}
+
+  /* decorative parallax background blur circles */
+  .blur-circle{position:absolute;width:280px;height:280px;border-radius:50%;filter:blur(90px);opacity:0.18;pointer-events:none;z-index:-1;transform: translate3d(0, 0, 0);}
+  .circle-1{top:12%;left:-120px;background:var(--blue-light);}
+  .circle-2{top:45%;right:-120px;background:var(--cyan);}
+  .circle-3{top:78%;left:-120px;background:var(--gold);}
+  @supports (animation-timeline: scroll(root)){
+    @media (prefers-reduced-motion: no-preference){
+      .circle-1{animation: parallaxScroll1 linear both;animation-timeline: scroll(root);animation-range: 0% 100%;}
+      .circle-2{animation: parallaxScroll2 linear both;animation-timeline: scroll(root);animation-range: 0% 100%;}
+      .circle-3{animation: parallaxScroll1 linear both;animation-timeline: scroll(root);animation-range: 0% 100%;}
+      @keyframes parallaxScroll1{from{transform: translate3d(0, -50px, 0);}to{transform: translate3d(0, 50px, 0);}}
+      @keyframes parallaxScroll2{from{transform: translate3d(0, 80px, 0);}to{transform: translate3d(0, -80px, 0);}}
+    }
+  }
 
   /* reveal: scroll-driven with JS fallback */
-  .reveal{opacity:0;transform:translateY(18px);clip-path:inset(0 0 14% 0 round 16px);}
-  .reveal.in{opacity:1;transform:none;clip-path:inset(0 0 0% 0 round 16px);
-    transition:opacity .6s ease,transform .6s cubic-bezier(.2,.8,.2,1),clip-path .6s cubic-bezier(.2,.8,.2,1);}
+  .reveal{opacity:0;transform:translate3d(0, 24px, 0) scale(0.97);clip-path:inset(0 0 14% 0 round 16px);
+    transition:opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1), clip-path 0.8s cubic-bezier(0.16, 1, 0.3, 1);}
+  .reveal.in{opacity:1;transform:translate3d(0, 0, 0) scale(1);clip-path:inset(0 0 0% 0 round 16px);}
   @supports (animation-timeline: view()){
     @media (prefers-reduced-motion: no-preference){
-      .reveal{animation:revealIn linear both;animation-timeline:view();animation-range:entry 0% entry 100%;}
+      .reveal{animation:revealFade linear both;animation-timeline:view();animation-range:entry 10% contain 35%;}
       .reveal.in{transition:none;}
-      @keyframes revealIn{from{opacity:0;transform:translateY(18px);clip-path:inset(0 0 14% 0 round 16px);}
-        to{opacity:1;transform:none;clip-path:inset(0 0 0% 0 round 16px);}}
+      @keyframes revealFade{
+        from{opacity:0;transform:translate3d(0, 24px, 0) scale(0.97);clip-path:inset(0 0 14% 0 round 16px);}
+        to{opacity:1;transform:translate3d(0, 0, 0) scale(1);clip-path:inset(0 0 0% 0 round 16px);}
+      }
     }
   }
 
@@ -381,6 +398,9 @@
 <body>
 <div id="progress"></div>
 <div class="sheet">
+  <div class="blur-circle circle-1"></div>
+  <div class="blur-circle circle-2"></div>
+  <div class="blur-circle circle-3"></div>
 
   <header class="header">
     <div class="header-bg"></div>
