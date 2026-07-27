@@ -382,12 +382,13 @@
   :root[data-theme="dark"] .note strong{color:#F59E0B;}
 
   /* CTA — magnetic buttons + ripple */
-  .cta{position:relative;overflow:hidden;text-align:center;border-radius:20px;padding:30px 26px;
-    background:linear-gradient(135deg,var(--navy),var(--navy-2) 50%,var(--blue));
-    box-shadow:0 26px 52px -28px rgba(11,42,84,.72);}
-  .cta::before{content:"";position:absolute;inset:0;
-    background:radial-gradient(480px 220px at 50% -30%,rgba(127,212,245,.38),transparent 70%);}
-  .cta h3{position:relative;font-family:'Outfit',sans-serif;font-size:19px;font-weight:700;color:#fff;margin-bottom:16px;}
+  .cta{position:relative;overflow:hidden;text-align:center;border-radius:20px;padding:32px 24px;
+    background:linear-gradient(135deg,#123A72 0%,#1E6FD9 100%);border:1px solid rgba(143,196,245,0.4);
+    box-shadow:0 20px 45px -20px rgba(11,42,84,.75);z-index:2;}
+  .cta::before{content:"";position:absolute;inset:0;pointer-events:none;
+    background:radial-gradient(480px 220px at 50% -30%,rgba(127,212,245,.45),transparent 70%);}
+  .cta h3{position:relative;font-family:'Outfit',sans-serif;font-size:20px;font-weight:800;color:#FFFFFF !important;margin-bottom:18px;
+    text-shadow: 0 2px 8px rgba(0,0,0,0.5);letter-spacing:0.01em;}
   .contacts{position:relative;display:flex;gap:11px;justify-content:center;flex-wrap:wrap;}
   .btn{position:relative;display:inline-flex;align-items:center;gap:8px;padding:12px 22px;border-radius:99px;
     font-size:13.5px;font-weight:800;text-decoration:none;overflow:hidden;isolation:isolate;
@@ -574,7 +575,7 @@
       variar conforme o nível de sujidade do imóvel, mediante avaliação prévia e ajuste de valor.</p>
     </div>
 
-    <div class="cta reveal">
+    <div class="cta">
       <h3>Agende seu plano hoje mesmo</h3>
       <div class="contacts">
         <a class="btn btn-primary" href="https://wa.me/5581986806219">📞 (81) 98680-6219<span class="rip"></span></a>
