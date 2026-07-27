@@ -28,12 +28,4 @@ jobs:
       - id: deployment
         uses: actions/deploy-pages@v4
 
-  sync-s3:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - uses: aws-actions/configure-aws-credentials@v4
-        with:
-          role-to-assume: arn:aws:iam::604179600038:role/github-actions-mania-de-limpeza-deploy
-          aws-region: sa-east-1
-      - run: aws s3 cp index.html s3://mania-de-limpeza-site/index.html --content-type text/html
+
